@@ -13,21 +13,6 @@ def run_command(command):
     except Exception as e:
         messagebox.showerror("Error", str(e))
 
-
-def add_changes():
-    """Añade los cambios al área de preparación."""
-    output = run_command("git add .")
-    messagebox.showinfo("Resultado", output or "Archivos añadidos correctamente.")
-
-
-def commit_changes():
-    """Confirma los cambios con un mensaje."""
-    commit_message = simpledialog.askstring("Mensaje de commit", "Describe brevemente los cambios realizados:")
-    if commit_message:
-        output = run_command(f'git commit -m "{commit_message}"')
-        messagebox.showinfo("Resultado", output or "Cambios confirmados correctamente.")
-
-
 def pull_changes():
     """Actualiza los cambios del repositorio remoto."""
     output = run_command("git pull")
@@ -57,8 +42,6 @@ def main():
     # Crear los botones
     tk.Label(root, text="Opciones de Git", font=("Arial", 16)).pack(pady=10)
 
-    tk.Button(root, text="Añadir cambios (git add .)", command=add_changes, width=30).pack(pady=5)
-    tk.Button(root, text="Confirmar cambios (git commit)", command=commit_changes, width=30).pack(pady=5)
     tk.Button(root, text="Actualizar cambios (git pull)", command=pull_changes, width=30).pack(pady=5)
     tk.Button(root, text="Subir cambios (git push)", command=push_changes, width=30).pack(pady=5)
 
